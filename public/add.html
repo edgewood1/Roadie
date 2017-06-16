@@ -56,17 +56,17 @@
             <div class="row">
                 <div class="col-md-4">
                     <h2>Where are you going?</h2>
-                    <label for="place" form="form1">Insert city and state that you plan to visit:</label>
-                    <input type="text" name="place" id="place">
+                    <label for="place" form="form1">Insert city and state:</label><br>
+                    <input type="text" name="place" id="place" required>
                 </div>
                 <div class="col-md-4">
-                    <h2>Which spots will you visit? </h2>
-                    <label for="event_name"> Insert the name of an attraction:</label>
-                    <input type="text" name="event_name" id="event_name">
+                    <h2>Which site will you visit? </h2>
+                    <label for="event_name"> Insert name of an attraction:</label><br>
+                    <input type="text" name="event_name" id="event_name" required>
                 </div>
                 <h2>Any notes? </h2>
-                <label for="event_note"> Insert notes:</label>
-                <br>
+                <label for="event_note"> Insert notes:</label><br>
+            
                 <textarea type="text" name="event_note" id="event_note">
                 </textarea>
             </div>
@@ -74,26 +74,31 @@
                 <div class="col-md-4">
                     <h2>First day of the trip?  </h2>
                     <label for="begin_date"> </label>
-                    <input type="text" name="begin_date" id="begin_date" class="datepicker">
+                    <input type="text" name="begin_date" id="begin_date" class="datepicker" required>
                 </div>
                 <div class="col-md-4">
                     <h2>Last day of the trip?  </h2>
-                    <label for="end_date"> Insert the name of an attraction:</label>
+                    <label for="end_date"> </label>
                     <input type="text" name="end_date" id="end_date" class="datepicker">
                 </div>
                 <div class="col-md-4">
-                    <h2>When are you going to this spot?</h2>
-                    <label for="event_date" form="form1">Insert the dates that you plan on visiting:</label>
-                    <input type="text" name="event_date" id="event_date" class="datepicker">
+                    <h2>Day of site visit?</h2>
+                    <label for="event_date" form="form1"></label>
+                    <input type="text" name="event_date" id="event_date" class="datepicker" required>
                 </div>
             </div>
+            <br>
+            <br>
+
             <!--THE SUBMIT BUTTON THAT WORKS.......FINALLY!-->
-            <div class="col-sm-4">
-                <button type="submit" class="btn btn-success" id="submit">Create Itinerary</button>
-                <br>
-                <br>
+            <div class="row">
+            <div class="col-md-4">
                 <input type=button class="btn btn-success" onClick="parent.open('https://www.google.com/maps/dir///@35.913200,-79.055847z')" value='Click here for Driving Directions'>
             </div>
+            <div class="col-md-4 col-offset-md-4">
+                <button type="submit" class="btn btn-success" id="submit">Create Itinerary</button>
+            </div>
+           </div>
         </form>
     </div>
     <hr>
@@ -101,8 +106,7 @@
         <div class="row">
             <div class="col-md-6">
                 <!--this is the map stuff-->
-                <br>
-                <br>
+               
                 <!--*************** THIS INPUT NEEDS TO BE MOVED TO ID=PLACE IN THE FORMS...-->
                 <input id="pac-input" class="controls" type="text" placeholder="Enter Destination">
                 <div id="map"></div>

@@ -30,7 +30,8 @@
 
     // loop begins 
 
-    for (var i = 0; i < posts.length; i++) {
+    // for (var i = 0; i < posts.length; i++) {
+      for (var i=posts.length-1; i>=0; i--){
 
 // pushing ALL posts to POSTSTOADD
 
@@ -51,9 +52,7 @@ console.log(postsToAdd)
     // var formattedDate = new Date(post.createdAt);
     // formattedDate = moment(formattedDate).format("MMMM Do YYYY, h:mm:ss a");
 
-
 // adding the paneling --- 
-
     var newPostPanel = $("<div>");
     newPostPanel.addClass("panel panel-default");
 
@@ -79,7 +78,6 @@ console.log(postsToAdd)
    
 var header = $("<p>").text("Trip to  " + post.place + " : " + post.begin_date + " - " + post.end_date + ".");
  
-
 var body = $("<p>").text("Visit " + post.event_name+ " on " +post.event_date + ".");
 
 var footer = $("<p>").text("Notes: " + post.event_note)
