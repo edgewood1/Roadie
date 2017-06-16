@@ -23,7 +23,32 @@
     font-size: 60px;
 }
 
-.col-md-2 {
-    width: initial;
+.btn-success {
+    color: #fff;
+    background-color: #69793e;
+    border-color: #69793e;
+    margin-left: 500px;
+    font-size: 20px;
+}
 
+.panel-default {
+    border-color: orangered;
+    border-width: thick;
+    font-size: 20px;
+}
+
+.roadiefooter {
+	background-color: #69793e;
+	padding: 20px 0;
+    opacity: 1;
+}
+
+a {
+    color: #333;
+    text-decoration: none;
+    float: right;
+}
+
+#landNavbar {
+    font-size: larger;
 }

@@ -1,3 +1,8 @@
+ #driveDir{
+  border-left: 30%;
+ }
+
+ 
  #map {
         height: 470px;
         width:470px;
@@ -53,15 +58,19 @@
         font-weight: 300;
       }
 
+
       #pac-input {
         background-color: #fff;
         font-family: Roboto;
         font-size: 15px;
         font-weight: 300;
-        margin-left: 12px;
+        margin: 10px;
         padding: 0 11px 0 13px;
         text-overflow: ellipsis;
-        width: 400px;
+        width: 300px;
+        padding:5px;
+        border-right:5px;
+
       }
 
       #pac-input:focus {
@@ -78,3 +87,21 @@
       #target {
         width: 345px;
       }
+
+::-webkit-input-placeholder { /* WebKit, Blink, Edge */
+    color: orangered;
+}
+:-moz-placeholder { /* Mozilla Firefox 4 to 18 */
+   color: orangered;
+   opacity:  1;
+}
+::-moz-placeholder { /* Mozilla Firefox 19+ */
+   color:  orangered;
+   opacity:  1;
+}
+:-ms-input-placeholder { /* Internet Explorer 10-11 */
+   color:   orangered;
+}
+::-ms-input-placeholder { /* Microsoft Edge */
+   color:   orangered;
+}

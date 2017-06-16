@@ -6,6 +6,8 @@
 // =============================================================
 var express = require("express");
 var bodyParser = require("body-parser");
+var client_id = '2a2a5f4fcb5f40558b5c74ab5dea66c8'; // Your client id
+var client_secret = '8da771b5440e4472af751422d360f85a'; // Your secret
 
 // Sets up the Express App
 // =============================================================

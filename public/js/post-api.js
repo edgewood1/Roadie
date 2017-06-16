@@ -74,6 +74,9 @@ function deletePost(id) {
   });
 }
 
+// test for a button in the form that takes you to views page
+
+
 // 4 This function figures out which post we want to delete and then calls deletePost
 function handlePostDelete(event) {
   event.preventDefault();

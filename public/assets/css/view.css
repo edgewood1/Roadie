@@ -1,4 +1,28 @@
+.jumbotron {
+    background-color: #fff;
+    background-image: url('../img/road-trip.jpg');
+    background-repeat: no-repeat;
+    background-position: center;
+    background-size: cover;
+}
 
+.jumbotron .container {
+    max-width: 70rem;
+    background: rgba(255,255,255, 0.2);
+    padding: 2rem;
+    color: white;
+}
+.jumbotron p {
+    color: white;
+    text-shadow: 0 0 10px rgba(0,0,0,0.5);
+    text-align: center;
+    font-weight: 200;
+}
+.jumbotron h1 {
+    color: white;
+    font-size: 60px;
+    text-align: center;
+}
  
 input[type="text"], textarea {
 
@@ -7,7 +31,24 @@ input[type="text"], textarea {
 
 }
 
+<<<<<<< HEAD
 /*hr {
 color: black
-
 }*/
+=======
+.roadiefooter {
+	background-color: orange;
+	padding: 20px 0;
+    opacity: 1;
+}
+
+a {
+    color: #333;
+    text-decoration: none;
+    float: right;
+}
+
+#landNavbar {
+    font-size: larger;
+}
+>>>>>>> 23b794acc155460b981db1946beda032082429aa
