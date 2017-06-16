@@ -1,7 +1,7 @@
 {
   "development": {
     "username": "root",
-    "password": "mysql11",
+    "password": "",
     "database": "roadie",
     "host": "127.0.0.1",
     "dialect": "mysql"
