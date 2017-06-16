@@ -15,23 +15,27 @@ var drop = $("#drop")
 var event_note = $("#event_note");
 var event_date = $("#event_date");
 var event_name = $("#event_name");
-    var allPost = {};
+var allPost = {};
+var mark = [];
+var newPost = {};
+var supper = document.getElementById("event_name");
+var listing = [];
 
-  $(function datePicker() {
-      $(".datepicker").datepicker({
-          showButtonPanel: true
-    
-        });
-    });
+$(function datePicker() {
+  $(".datepicker").datepicker({
+    showButtonPanel: true
+
+  });
+});
 
 
-$(document).ready(function() {
+$(document).ready(function () {
 
   //"View-all-places" button in view-update.html, which returns user to VIEW-ALL-CITIES
 
 
 
- $("#addMore").hide();
+  $("#addMore").hide();
 
   var blogContainer = $("#container");
   var posts;
@@ -42,16 +46,16 @@ $(document).ready(function() {
 
   function getPosts() {
 
-$("#title").text("Select a City:")
+    $("#title").text("Select a City:")
 
-    $.get("/api/posts/", function(all) {
+    $.get("/api/posts/", function (all) {
 
       // all - contains all the data objects
       // loop through these objects
 
       for (i = 0; i < all.length; i++) {
 
-// grab the first city and it's begin date
+        // grab the first city and it's begin date
 
         var place = all[i].place;
         var begin = all[i].begin_date;
@@ -66,11 +70,11 @@ $("#title").text("Select a City:")
         if (!placesObj[place]) {
           placesObj[place] = [];
         }
-        
+
         // inner loop prevents placing the same begin_date in city array more than once
 
         if (!placesObj[place].includes(begin)) { // added
-        placesObj[place].push(begin);
+          placesObj[place].push(begin);
 
         } // end inner loop
       } // end if loop
@@ -79,12 +83,12 @@ $("#title").text("Select a City:")
       // list = [city1, city2, city3]
 
       list = Object.keys(placesObj);
-      
+
       // loop through list and display cities on screen - 
       // which is to be chosen? 
-      
+
       for (i = 0; i < list.length; i++) {
-        
+
         var row = $("<div>").addClass("col-md-offset-1").addClass("col-sm-1");
         var line = $("<a>").text(list[i]).attr("id", i).css("font-size", "20px").on("click", holler);
         row.append(line);
@@ -92,8 +96,8 @@ $("#title").text("Select a City:")
       }
     });
 
-// test shows chapel hill: 4/17, 4/20
-console.log(placesObj);
+    // test shows chapel hill: 4/17, 4/20
+    console.log(placesObj);
 
   } // FUNCTION 1, which displays cities, ends
 
@@ -105,11 +109,11 @@ console.log(placesObj);
     blogContainer.empty();
 
     x = e.target.id;  // grab id of city chosen
-    
+
     // Asking a question: //list[x] is the name of a city
 
 
-$("#title").text("Which date in " + list[x] + "?");
+    $("#title").text("Which date in " + list[x] + "?");
     // var line1 = $("<p>")
     //   .addClass("col-sm-offset-1")
     //   .text("Which date in " + list[x] + "?");
@@ -119,7 +123,7 @@ $("#title").text("Which date in " + list[x] + "?");
 
     //1. we have a list of all begin_dates --- placesObj.list[]
 
-  
+
     for (i = 0; i < placesObj[list[x]].length; i++) {
       var row = $("<div>").addClass("col-sm-offset-1").addClass("col-sm-1");
       var line2 = $("<a>")
@@ -140,8 +144,8 @@ $("#title").text("Which date in " + list[x] + "?");
   function holler2(e) {
 
     z = e.target.id;
-    console.log( "date chosen: " +placesObj[list[x]][z]); // correct begin_date
-   
+    console.log("date chosen: " + placesObj[list[x]][z]); // correct begin_date
+
     // THE ORIGINAL API CALL --
 
     // $.get("/api/posts3/" + id, function(data) {
@@ -167,20 +171,20 @@ $("#title").text("Which date in " + list[x] + "?");
     // z = date chosen - 
     //get call --
 
-    $.get("/api/posts", function(data) {
-      
+    $.get("/api/posts", function (data) {
+
       // data = all our saved objects
       // loop through all this
 
       for (var i = 0; i < data.length; i++) {
-        
+
         // if an object has the same begin_date as chosen, 
         // then put it in 'postsToAdd' 
 
         if (data[i].begin_date == placesObj[list[x]][z]) {
 
           postsToAdd.push(data[i]);
-           
+
         }
       }
       console.log(postsToAdd);
@@ -188,7 +192,7 @@ $("#title").text("Which date in " + list[x] + "?");
 
       // send postsToAdd to next function --
       // it contains all the needed objects for display
-       
+
     }); // FUNCTION 3 API GET ENDS
   } // end FUNCTION 3 -- grabbing posts to add -
 
@@ -225,7 +229,7 @@ $("#title").text("Which date in " + list[x] + "?");
 
     // this figures the size ---
 
-    Object.size = function(obj) {
+    Object.size = function (obj) {
       var size = 0,
         key;
       for (key in obj) {
@@ -253,30 +257,24 @@ $("#title").text("Which date in " + list[x] + "?");
 
       ///
       //////////////////////////////
-      var listing = Object.keys(allPost);
+      listing = Object.keys(allPost);
       console.log(listing);
 
       /// delete button
 
       var deleteBtn = $("<button>")
       deleteBtn.text("delete")
-      // newPostPanelBody.append(deleteBtn);
-      // var a_post
+    
       newPostPanelHeading.append(listing[i]).css("font-size", "20px");
-      // var event= $("<li>")
-      // var ul=$("<ul>")
-      // newPostPanelBody.append(ul)
-     
+   
+
       for (y = 0; y < allPost[listing[i]].length; y++) {
 
-      //   a_post = allPost[listing[i]][y].event_name;
-      // event.append(a_post)
-      // ul.append(event);
-        // event.append(deleteBtn)
-        
-        
-        newPostPanelBody.append(allPost[listing[i]][y].event_name + " - " + "</br>" ).css("font-size", "20px");
-        newPostPanelBody.append(allPost[listing[i]][y].event_note ).css({"font-size": "20px", "margin-left": "10px"});
+       
+
+
+        newPostPanelBody.append(allPost[listing[i]][y].event_name + " - " + "</br>").css("font-size", "20px");
+        newPostPanelBody.append(allPost[listing[i]][y].event_note).css({ "font-size": "20px", "margin-left": "10px" });
         // newPostPanelBody.append(deleteBtn)
         newPostPanelBody.append("<br><br>")
         // newPostPanelBody.append(event)
@@ -284,181 +282,53 @@ $("#title").text("Which date in " + list[x] + "?");
 
       console.log(allPost[listing[0]][0].event_name);
 
-      // add notes? 
-
     
- 
-
-
-      // // deleteBtn.addClass("delete btn btn-danger");
-
-// edit button - drop? 
-      // var editBtn = $("<button>");
-      // editBtn.text("edit");
-      // // editBtn.addClass("edit btn btn-info");
-
-// checkbox - drop? 
-
-      // var checkBox =$("<div>").addClass("checkbox")
-      // var checkLabel =$("<label>").html("<input type='checkbox'>").text(post.event_name)
-
-      // var checkInput = $("<input>").attr("type", "checkbox");
-      // checkLabel.append(checkInput);
-      // checkBox.append(checkLabel);
-
       newPostPanel.append(newPostPanelHeading);
       newPostPanel.append(newPostPanelBody);
       blogContainer.append(newPostPanel);
-       
-    //   newPostPanel.data("post", post);
-}
 
-
-/////////////////////////////////// show
-
- $("#addMore").show();
-
-
-
-$("#cms").on("submit", handleFormSubmit());
-
-
-
-function handleFormSubmit() {
-  event.preventDefault();
- 
-// console.log(allPost[listing[0]][0].place)
-  // Constructing a newPost object to hand to the database
-  var newPost = {
-    
-    place: allPost[listing[0]][0].place,
-
-    begin_date: allPost[listing[0]][0].begin_date,
-
-    end_date: allPost[listing[0]][0].end_date,
-
-    event_note: $("#event_note").val(),
-    
-    event_date: event_date.val(),
-    
-    event_name: event_name.val(),
-  
-  };
-
-  // Run the submitpost function
-
-  if (newPost) {
-    submitPost(newPost);
+      //   newPostPanel.data("post", post);
+    }
+    /////////////////////////////////// show
+    $("#addMore").show();
   }
-}
-
-//////////////
-
-// 2. Submits a new post and brings user to blog page upon completion
-function submitPost(post) {
-  $.post("/api/posts", post, function() {
-    // window.location.href = "/view-update";
-  });
-}
 
 
 
-// var event_name, event_date, event_note
-
-// $("#addMore").html("<hr>").css("border", "1px solid black").text("Add another event?")
-
-// var question= ["Event:", "Date:   ", "Notes:"]
-// var mark = [event_name, event_date, event_note]
-
-
-// var form = $("<form>").attr("id", "add");
-
-// for (i=0; i<question.length; i++) {
-
-
-// var label=$("<label>").attr("for", mark[i]).text(question[i])
+  $("#cms").on("submit", handleFormSubmit);
 
 
 
-// if (i===2) {
-//   var input=$("<input>").addClass("datepicker").attr({"type": "text", "name":mark[i], "id": mark[i]}).css("background-color", "#DCDCDC")
-// }
-// else {
-//   var input=$("<input>").attr({"type": "text", "name":mark[i], "id": mark[i]}).css("background-color", "#DCDCDC")
-// }
-// label.append(input)
+  function handleFormSubmit() {
+    event.preventDefault();
 
-// form.append(label);
+    // console.log(allPost[listing[0]][0].place)
+    // Constructing a newPost object to hand to the database
+    newPost = {
 
+      place: allPost[listing[0]][0].place,
 
-// }
+      begin_date: allPost[listing[0]][0].begin_date,
 
+      end_date: allPost[listing[0]][0].end_date,
 
-//  var sub=$("<input>").attr({"type":"submit", "value":"ADD"});
-//   label.append(sub);
-//   $("#addMore").append(form);
+      event_note: $("#event_note").val(),
 
+      event_date: event_date.val(),
 
-////////////////
-  // var form2=$("<form>")
-  //     
-  //     
-  //     var sub=$("<input>").attr({"type":"submit", "value":"submit"});
-      
-  //     label.append(input);
-  //     label.append(sub);
-  //     form2.append(label)
-  //     newPostPanelBody.append(form2)
+      event_name: event_name.val()
 
 
+    }
 
-///////////////////DROP DOWN MENU
 
-drop.html("<br><br>")
+    $.post("/api/posts", newPost, function () {
+      window.location.href = "/view-update";
+    })
 
-var dropdown =$("<div>").addClass("dropdown");
-var dropbutton = $("<button>").addClass("btn btn-secondary dropdown-toggle").attr({"type": "button", "id" : "dropdownMenuButton", "data-toggle": "dropdown", "aria-haspopup": "true", "aria-expanded": "false"}).text("Add Notes?")
-var pre_list = $("<div>").addClass("dropdown-menu").attr("aria-labelledby", "dropdownMenuButton")
-var anchor
-var how = Object.keys(allPost);
 
-dropdown.append(dropbutton);
-dropdown.append(pre_list);
-// allPost[date[row-object]].event... 
-console.log(how)
-console.log(allPost[listing])
-for (var i=0; i<how.length; i++) {
-
-for (var m=0; m<allPost[listing[i]].length; m++){
+  }
   
-  anchor = $("<a>").addClass("dropdown-item").attr("href", "#").text(allPost[listing[i]][m].event_name)
-  console.log(allPost[listing[i]][m])
-  pre_list.append(anchor);
 
-} //inner loop
 
-}//outerloop
-
-drop.append(dropdown);
-
-/*<div class="dropdown">
-  <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-    Dropdown button
-  </button>
-  <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
-    <a class="dropdown-item" href="#">Action</a>
-    <a class="dropdown-item" href="#">Another action</a>
-    <a class="dropdown-item" href="#">Something else here</a>
-  </div>
-</div>*/
-
-// .append("<button>").attr("type", "submit");
-
-// clear all the variables
-postsToAdd=[];
-allPost={};
-placesObj = {};
-b=0;
-list=[]
-  } /// FUNCTION 4/4 ENDS - PANEL CREATION - CREATENEWPOST
 }); //end page
