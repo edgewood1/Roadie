@@ -38,13 +38,17 @@
 }
 
 .roadiefooter {
-	background-color: #69793e;
-	padding: 20px 0;
+    background-color: #69793e;
+    padding: 20px 0;
     opacity: 1;
+    position: absolute;
+    left: 0;
+    right: 0;
+    color: white;
 }
 
 a {
-    color: #333;
+    color: white;
     text-decoration: none;
     float: right;
 }
