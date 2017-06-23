@@ -3,7 +3,7 @@ window.addEventListener('load', function() {
   var webAuth = new auth0.WebAuth({
     domain: 'app70749112.auth0.com',
     clientID: 'zCiVXnoOy0yq58TOYCdTpB4UWDY5d8UQ',
-    redirectUri: window.location.href,
+    redirectUri: 'https://roadie2017.herokuapp.com/add',
     audience: 'https://app70749112.auth0.com/userinfo',
     responseType: 'token id_token',
     scope: 'openid'
