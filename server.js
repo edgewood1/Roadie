@@ -12,7 +12,7 @@ var client_secret = '8da771b5440e4472af751422d360f85a'; // Your secret
 // Sets up the Express App
 // =============================================================
 var app = express();
-var PORT = process.env.PORT || 3000;
+var port = process.env.PORT || 3000;
 
 // Requiring our models for syncing
 var db = require("./models");
@@ -34,8 +34,8 @@ require("./routes/api-routes.js")(app);
 
 // Syncing our sequelize models and then starting our express app
 db.sequelize.sync().then(function() {
-  app.listen(PORT, function() {
-    console.log("App listening on PORT " + PORT);
+  app.listen(port, function() {
+    console.log("App listening on PORT " + port);
   });
 });
 
